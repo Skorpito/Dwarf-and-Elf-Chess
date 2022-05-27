@@ -14,10 +14,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class GameSetupAndPlayer extends JPanel{
-    private final int GAME_WIDTH = 640;
-	private final int GAME_HEIGHT = 640;
-	private final int CARD_WIDTH = 80;
-	private final int CARD_HEIGHT = 80;
+    private final int BOARD_WIDTH = 640;
+	private final int BOARD_HEIGHT = 640;
+	private final int SQUARE_WIDTH = 80;
+	private final int SQUARE_HEIGHT = 80;
 	
 	private ArrayList<Drawables> drawables= new ArrayList<Drawables>();
 	private JLabel statusbar;
@@ -26,29 +26,29 @@ public class GameSetupAndPlayer extends JPanel{
 	//private JFrame testFrame =new JFrame("JFrame Color Example");
 	
 	public GameSetupAndPlayer(JLabel statusbar) {
-	    this.setSize(GAME_WIDTH, GAME_HEIGHT);
+	    this.setSize(BOARD_WIDTH, BOARD_HEIGHT);
 
         this.statusbar = statusbar;
         createCards();
     }
 
 	//getters and Setters
-	public int gameWidth() {
-		return GAME_WIDTH;
+	public int boardWidth() {
+		return BOARD_WIDTH;
 	}
-	public int gameHeight() {
-		return GAME_HEIGHT;
+	public int boardHeight() {
+		return BOARD_HEIGHT;
 	}
-	public int cardWidth() {
-		return CARD_WIDTH;
+	public int squareWidth() {
+		return SQUARE_WIDTH;
 	}
-	public int cardHeight() {
-		return CARD_HEIGHT;
+	public int squareHeight() {
+		return SQUARE_HEIGHT;
 	}
 	
 	//This contains the things that need to be set up before the game starts
 	private void createCards() {
-		setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
+		setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 		addMouseListener(new CardListener());
 		Drawables.setGame(this);
         newGame();
@@ -56,13 +56,15 @@ public class GameSetupAndPlayer extends JPanel{
 	
 	
 	private void newGame() {
-		
+		/*
 		//draw all the nessary things
 		int space=0;
 		for(int i =0; i<=GAME_WIDTH-CARD_WIDTH-space; i=i+CARD_WIDTH+space) {
 
 			drawables.add(new Card(i));
 		}
+		*/
+		drawables.add(new Board());
 	}
 	
 
@@ -95,8 +97,9 @@ public class GameSetupAndPlayer extends JPanel{
 			 int x = e.getX();
 			 int y = e.getY();
 			 
-			 int whichRectangle =x/CARD_WIDTH;
-			 drawables.add(new Marker(whichRectangle));
+			 int xLoc =x/SQUARE_WIDTH;
+			 int yLoc =y/SQUARE_HEIGHT;
+			 drawables.add(new Marker(xLoc,yLoc));
 			 
 			 //redraw the scene with all of the objs in drawable
 			 repaint();

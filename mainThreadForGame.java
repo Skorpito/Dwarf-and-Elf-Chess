@@ -26,7 +26,6 @@ public class mainThreadForGame extends JFrame {
     private void initUI() {
 
     	//dont completely know what this does but its important I think sorta
-    	//sets up for drawing
         statusbar = new JLabel("");
         add(statusbar, BorderLayout.SOUTH);
 
@@ -45,7 +44,7 @@ public class mainThreadForGame extends JFrame {
     	//ignore this it works
         EventQueue.invokeLater(() -> {
 
-        	mainThreadForGame ex = new mainThreadForGame();
+            var ex = new mainThreadForGame();
             ex.setVisible(true);
         });
         System.out.println("OK");
